@@ -25,7 +25,7 @@ namespace IngressoMVC.Controllers
         public IActionResult Criar(PostCategoriaDTO categoriaDto)
         {
             if(!ModelState.IsValid) return View(categoriaDto);
-            Categoria categoria = new Categoria(categoriaDto.Nome);
+            Categoria categoria = new Categoria(categoriaDto.Id);
             _context.Add(categoria);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -49,7 +49,7 @@ namespace IngressoMVC.Controllers
 
             if (!ModelState.IsValid) return View(result);
 
-            result.AtualizarDados(categoriaDto.Nome);
+            result.AtualizarDados(categoriaDto.Id);
             _context.Categorias.Update(result);
             _context.SaveChanges();
 
@@ -59,8 +59,9 @@ namespace IngressoMVC.Controllers
         public IActionResult Deletar(int id)
         {
             var result = _context.Categorias.FirstOrDefault(a => a.Id == id);
-            if (result == null) return View();
-            return View(result);
+            if (result == null) return View(result);
+            return View("NotFound");
+           
         }
 
         [HttpPost]

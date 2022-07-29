@@ -68,9 +68,9 @@ namespace IngressoMVC.Controllers
             var result = _context.Produtores.FirstOrDefault(p => p.Id == id);
             
             if(result == null)
-                return View();
-
+                return View("NotFound");
             return View(result);
+
         }
 
         [HttpPost]
@@ -94,9 +94,9 @@ namespace IngressoMVC.Controllers
             var result = _context.Produtores.FirstOrDefault(p => p.Id == id);
 
             if(result == null)
-                return View();
-
+                return View("NotFound");
             return View(result);
+
         }
 
         [HttpPost]

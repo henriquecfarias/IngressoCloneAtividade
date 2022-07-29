@@ -69,9 +69,9 @@ namespace IngressoMVC.Controllers
             var result = _context.Atores.FirstOrDefault(a => a.Id == id);
 
             if (result == null)
-                return View();
-
-            return View(result);
+                return View(result);
+            return View("NotFound");
+            
         }
 
         [HttpPost]
@@ -94,9 +94,9 @@ namespace IngressoMVC.Controllers
         {
             var result = _context.Atores.FirstOrDefault(a => a.Id == id);
 
-            if (result == null) return View();
+            if (result == null) return View(result);
+            return View("NotFound");
 
-            return View(result);
         }
 
         [HttpPost, ActionName("Deletar")]
